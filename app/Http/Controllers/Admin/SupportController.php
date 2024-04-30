@@ -28,7 +28,7 @@ class SupportController extends Controller
 
     public function store(SupportRequest $request)
     {
-        $this->support->create($request->all());
+        $this->support->create($request->validated());
 
         return redirect()->route('supports.index');
     }
@@ -44,7 +44,7 @@ class SupportController extends Controller
             return redirect()->back();
         }
 
-        $support->update($request->all());
+        $support->update($request->validated());
 
         return redirect()->route('supports.index');
     }
