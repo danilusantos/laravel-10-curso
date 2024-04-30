@@ -16,20 +16,19 @@
         @foreach ($supports as $support)
             <tr>
                 <td>
-                    <a href="{{ route('supports.show', ['support' => $support]) }}">
+                    <a href="{{ route('supports.show', ['id' => $support->id]) }}">
                         {{ $support->subject }}
                     </a>
                 </td>
                 <td>{{ $support->status }}</td>
                 <td>{{ $support->body }}</td>
                 <td>
-                    <a href="{{ route('supports.edit', ['support' => $support]) }}">
+                    <a href="{{ route('supports.edit', ['id' => $support->id]) }}">
                         Editar
                     </a>
                 </td>
                 <td>
-                    <form action="{{ route('supports.destroy', ['support' => $support]) }}" method="POST"
-                        id="formDeletar">
+                    <form action="{{ route('supports.destroy', ['id' => $support->id]) }}" method="POST" id="formDeletar">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Remover</button>

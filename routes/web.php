@@ -10,11 +10,11 @@ Route::name('supports.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
-        Route::get('/{support}/edit', 'edit')->name('edit');
-        Route::get('/{support}', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::get('/{id}', 'show')->name('show');
         Route::post('/', 'store')->name('store');
         Route::put('/{support}', 'update')->name('update');
-        Route::delete('/{support}', 'destroy')->name('destroy');
+        Route::delete('/{id}', 'destroy')->name('destroy');
     });
 
 Route::get('/contato', [ContactController::class, 'index']);
