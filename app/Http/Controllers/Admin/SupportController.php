@@ -5,18 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\SupportRequest;
 use App\Models\Support;
+use App\Services\SupportService;
+use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
     private $support;
 
-    public function __construct(Support $support)
-    {
-        $this->support = $support;
+    public function __construct(
+        protected SupportService $service
+    ) {
     }
-    public function index()
+
+    public function index(Request $request)
     {
-        $supports = $this->support->all();
+        $supports = $this->service->getAll($request->get('filter'));
 
         return view('admin.supports.index', compact('supports'));
     }
@@ -33,8 +36,12 @@ class SupportController extends Controller
         return redirect()->route('supports.index');
     }
 
-    public function edit(Support $support)
+    public function edit(string|int $id)
     {
+        if(! $support = $this->service->findOne($id)) {
+            return redirect()->back();
+        }
+
         return view('admin.supports.edit', compact('support'));
     }
 
@@ -49,21 +56,18 @@ class SupportController extends Controller
         return redirect()->route('supports.index');
     }
 
-    public function show(Support $support)
+    public function show(string|int $id)
     {
-        if(! $support) {
+        if(! $support = $this->service->findOne($id)) {
             return redirect()->back();
         }
+
         return view('admin.supports.show', compact('support'));
     }
 
-    public function destroy(Support $support)
+    public function destroy(string|int $id)
     {
-        if(! $support) {
-            return redirect()->back();
-        }
-
-        $support->delete();
+        $this->service->delete($id);
 
         return redirect()->route('supports.index');
     }
