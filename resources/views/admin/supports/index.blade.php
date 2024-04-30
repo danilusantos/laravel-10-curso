@@ -28,7 +28,12 @@
                     </a>
                 </td>
                 <td>
-                    Remover
+                    <form action="{{ route('supports.destroy', ['support' => $support]) }}" method="POST"
+                        id="formDeletar">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Remover</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

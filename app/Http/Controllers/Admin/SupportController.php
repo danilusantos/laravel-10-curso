@@ -40,6 +40,10 @@ class SupportController extends Controller
 
     public function update(Request $request, Support $support)
     {
+        if(! $support) {
+            return redirect()->back();
+        }
+
         $support->update($request->all());
 
         return redirect()->route('supports.index');
@@ -51,5 +55,16 @@ class SupportController extends Controller
             return redirect()->back();
         }
         return view('admin.supports.show', compact('support'));
+    }
+
+    public function destroy(Support $support)
+    {
+        if(! $support) {
+            return redirect()->back();
+        }
+
+        $support->delete();
+
+        return redirect()->route('supports.index');
     }
 }

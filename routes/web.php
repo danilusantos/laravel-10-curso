@@ -14,6 +14,7 @@ Route::name('supports.')
         Route::get('/{support}', 'show')->name('show');
         Route::post('/', 'store')->name('store');
         Route::put('/{support}', 'update')->name('update');
+        Route::delete('/{support}', 'destroy')->name('destroy');
     });
 
 Route::get('/contato', [ContactController::class, 'index']);
