@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\SupportRequest;
 use App\Models\Support;
-use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
@@ -26,7 +26,7 @@ class SupportController extends Controller
         return view('admin.supports.create');
     }
 
-    public function store(Request $request)
+    public function store(SupportRequest $request)
     {
         $this->support->create($request->all());
 
@@ -38,7 +38,7 @@ class SupportController extends Controller
         return view('admin.supports.edit', compact('support'));
     }
 
-    public function update(Request $request, Support $support)
+    public function update(SupportRequest $request, Support $support)
     {
         if(! $support) {
             return redirect()->back();
