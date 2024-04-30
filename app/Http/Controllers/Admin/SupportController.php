@@ -32,4 +32,24 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
     }
+
+    public function edit(Support $support)
+    {
+        return view('admin.supports.edit', compact('support'));
+    }
+
+    public function update(Request $request, Support $support)
+    {
+        $support->update($request->all());
+
+        return redirect()->route('supports.index');
+    }
+
+    public function show(Support $support)
+    {
+        if(! $support) {
+            return redirect()->back();
+        }
+        return view('admin.supports.show', compact('support'));
+    }
 }

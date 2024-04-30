@@ -10,7 +10,10 @@ Route::name('supports.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
+        Route::get('/{support}/edit', 'edit')->name('edit');
+        Route::get('/{support}', 'show')->name('show');
         Route::post('/', 'store')->name('store');
+        Route::put('/{support}', 'update')->name('update');
     });
 
 Route::get('/contato', [ContactController::class, 'index']);
