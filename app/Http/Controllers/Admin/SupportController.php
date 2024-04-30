@@ -8,10 +8,28 @@ use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-    public function index(Support $support)
+    private $support;
+
+    public function __construct(Support $support)
     {
-        $supports = $support->all();
+        $this->support = $support;
+    }
+    public function index()
+    {
+        $supports = $this->support->all();
 
         return view('admin.supports.index', compact('supports'));
+    }
+
+    public function create()
+    {
+        return view('admin.supports.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->support->create($request->all());
+
+        return redirect()->route('supports.index');
     }
 }

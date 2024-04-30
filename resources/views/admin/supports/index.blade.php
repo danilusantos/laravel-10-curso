@@ -1,5 +1,7 @@
 <h1>Listagem Suporte</h1>
 
+<a href="{{ route('supports.create') }}">Novo</a>
+
 <table>
     <caption></caption>
     <thead>
