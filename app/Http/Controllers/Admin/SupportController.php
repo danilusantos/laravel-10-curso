@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-    private $support;
-
     public function __construct(
         protected SupportService $service
     ) {
@@ -22,7 +20,11 @@ class SupportController extends Controller
 
     public function index(Request $request)
     {
-        $supports = $this->service->getAll($request->get('filter'));
+        $supports = $this->service->paginate(
+            page: 1,
+            totalPerPage: 20,
+            filter: $request->get('filter')
+        );
 
         return view('admin.supports.index', compact('supports'));
     }
