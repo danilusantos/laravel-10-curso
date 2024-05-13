@@ -13,7 +13,7 @@ Route::name('supports.')
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::get('/{id}', 'show')->name('show');
         Route::post('/', 'store')->name('store');
-        Route::put('/{support}', 'update')->name('update');
+        Route::put('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('destroy');
     });
 

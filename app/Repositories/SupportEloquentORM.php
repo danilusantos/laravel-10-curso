@@ -59,9 +59,9 @@ class SupportEloquentORM implements SupportRepositoryInterface
             return null;
         }
 
-        return (object) $support->update(
-            (array) $dto
-        )->toArray();
+        $support->update((array) $dto);
+
+        return (object) $support->toArray();
     }
 
 }

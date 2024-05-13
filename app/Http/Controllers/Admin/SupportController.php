@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DTO\CreateSupportDTO;
-use App\DTO\UpdateSupportDTO;
+use App\DTO\{
+    CreateSupportDTO,
+    UpdateSupportDTO
+};
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\SupportRequest;
-use App\Models\Support;
 use App\Services\SupportService;
 use Illuminate\Http\Request;
 
@@ -49,9 +50,9 @@ class SupportController extends Controller
         return view('admin.supports.edit', compact('support'));
     }
 
-    public function update(SupportRequest $request, Support $support)
+    public function update(SupportRequest $request, $id)
     {
-        if(! $support) {
+        if(! $support = $this->service->findOne($id)) {
             return redirect()->back();
         }
 
