@@ -1,3 +1,4 @@
+@csrf
 <input type="text" placeholder="Assunto" name="subject" value="{{ $support ? $support->subject : old('subject') }}">
 <br>
 @error('subject')
